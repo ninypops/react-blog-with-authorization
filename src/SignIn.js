@@ -11,5 +11,5 @@ function SignIn () {
     </div>
   )
 }
-
-export default SignIn
+// User has to be signed in with authenticator in order to get to this page
+export default withAuthenticator(SignIn)
