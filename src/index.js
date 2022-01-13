@@ -4,10 +4,24 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {
+  BrowserRouter as Router
+} from 'react-router-dom'
+
+import Amplify, { AuthModeStrategyType } from 'aws-amplify'
+import awsconfig from './aws-exports'
+
+Amplify.configure({
+  ...awsconfig,
+  DataStore: {
+    authModeStrategyType: AuthModeStrategyType.MULTI_AUTH
+  }
+})
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Router>
     <App />
-  </React.StrictMode>,
+  </Router>,
   document.getElementById('root')
 );
 
