@@ -31,6 +31,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "blogID": {
+                    "name": "blogID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -54,6 +61,15 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byBlog",
+                        "fields": [
+                            "blogID"
+                        ]
+                    }
                 },
                 {
                     "type": "auth",
@@ -104,6 +120,20 @@ export const schema = {
                     "type": "String",
                     "isRequired": true,
                     "attributes": []
+                },
+                "Posts": {
+                    "name": "Posts",
+                    "isArray": true,
+                    "type": {
+                        "model": "Post"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "blogID"
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -161,5 +191,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "4949e3c8ad4f6a02d7a78f4b7e622ce0"
+    "version": "05d5427721f9150d42a3d3c4911161b7"
 };
