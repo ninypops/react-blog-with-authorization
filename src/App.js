@@ -67,10 +67,10 @@ function App () {
         </Route>
         <Route path='/' exact>
           <h1>Blogs</h1>
-           {/* If user is an empty object, tell them to sign in */}
-          {!user.attributes && <Link to='/sign-in'>Sign In</Link>}
-          {/* If user is signed in, give them the option to sign out */}
-          {user.attributes && <button onClick={async () => await Auth.signOut()}>Sign Out</button>}
+          {user.attributes 
+            ? <button onClick={async () => await Auth.signOut()}>Sign Out</button> 
+            : <Link to='/sign-in'>Sign In</Link>
+          }
           {blogs.map(blog => (
             <Link to={`/blog/${blog.name}`} key={blog.id}>
               <h2>{blog.name}</h2>
