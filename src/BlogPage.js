@@ -10,6 +10,11 @@ export default function BlogPage ({ user }) {
   const [posts, setPosts] = useState([])
   useEffect(() => {
     const getData = async () => {
+      // Only getting blog for the name we want
+      const data = await DataStore.query(Blog, p => p.name('eq', name))
+      // Posts only show if id equal to the blog we want ^
+      const posts = await DataStore.query(Post, p => p.blogID('eq', data))
+      setPosts(posts)
     }
     getData()
   }, [])
